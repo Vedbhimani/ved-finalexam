@@ -19,15 +19,10 @@ const config = require('./config/config');
 
 var app = express();
 
-mongoose.connect(config.mongoConnectionString, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log('Connected to MongoDB'))
-.catch(err => {
-  console.error('Failed to connect to MongoDB', err);
- 
-});
+mongoose.connect(config.mongoConnectionString)
+  .then(() => console.log("Connected to MongoDB"))
+  .catch(err => console.error("Failed to connect to MongoDB", err));
+
 let openapiDoc;
 try {
   const spec = fs.readFileSync('./openapi.yaml', 'utf8');
