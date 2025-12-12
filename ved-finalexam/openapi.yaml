@@ -1,0 +1,103 @@
+openapi: 3.0.3
+info:
+  title: Restaurants API (COMP3033 Final)
+  description: API to manage restaurant records (pagination, create, delete)
+  version: "1.0.0"
+servers:
+  - url: http://localhost:3000
+paths:
+  /api/restaurants:
+    get:
+      summary: List restaurants (paginated)
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+          description: Page number (10 items per page)
+      responses:
+        '200':
+          description: A paged list of restaurants
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page:
+                    type: integer
+                  perPage:
+                    type: integer
+                  totalItems:
+                    type: integer
+                  totalPages:
+                    type: integer
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Restaurant'
+    post:
+      summary: Create a new restaurant
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RestaurantCreate'
+      responses:
+        '201':
+          description: Created restaurant
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Restaurant'
+  /api/restaurants/{_id}:
+    delete:
+      summary: Delete restaurant by id
+      parameters:
+        - in: path
+          name: _id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Deleted
+components:
+  schemas:
+    Restaurant:
+      type: object
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+        address:
+          type: string
+        phoneNumber:
+          type: string
+        emailAddress:
+          type: string
+        rating:
+          type: integer
+    RestaurantCreate:
+      type: object
+      required:
+        - name
+        - address
+        - phoneNumber
+        - emailAddress
+        - rating
+      properties:
+        name:
+          type: string
+        address:
+          type: string
+        phoneNumber:
+          type: string
+        emailAddress:
+          type: string
+        rating:
+          type: integer
+          minimum: 1
+          maximum: 10
