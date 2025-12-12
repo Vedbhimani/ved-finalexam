@@ -14,8 +14,9 @@ const swaggerUi = require('swagger-ui-express');
 const fs = require('fs');
 const yaml = require('js-yaml');
 
+require('dotenv').config();
 const mongoose = require('mongoose');
-const config = require('./config/config');
+
 
 var app = express();
 
