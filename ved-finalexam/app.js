@@ -20,9 +20,10 @@ const mongoose = require('mongoose');
 
 var app = express();
 
-mongoose.connect(config.mongoConnectionString)
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("Connected to MongoDB"))
   .catch(err => console.error("Failed to connect to MongoDB", err));
+
 
 let openapiDoc;
 try {
