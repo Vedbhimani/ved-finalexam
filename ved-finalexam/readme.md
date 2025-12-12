@@ -39,30 +39,10 @@ Swagger UI + OpenAPI – API documentation
 
 Morgan – HTTP request logger
 
-🚀 Installation & Setup
-
-Clone the repository:
-
-git clone https://github.com/vedbhimani/ved-finalexam.git
-cd ved-finalexam
 
 
-Install dependencies:
-
-npm install
 
 
-Create a .env file in the project root:
-
-MONGO_URI=your_mongodb_connection_string
-PORT=3000
-
-
-Replace your_mongodb_connection_string with the connection string provided.
-
-Start the server:
-
-npm start
 
 
 The server will start on http://localhost:3000.
